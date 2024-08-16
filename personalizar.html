@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Diseño</title>
+    <link rel="stylesheet" href="styleP.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <header>
+        <a href="maqueta.html"><img src="SlickLogo.jpg" class="logo" alt="Logo"></a>
+
+        <div class="menu-container">
+            <button class="menu-button">Menú</button>
+            <div class="menu-content">
+                <a href="index.html">Inicio</a>
+                <a href="Carrito.html">Carrito</a>
+                <a href="Terminos.html">Soporte</a>
+            </div>
+        </div>
+    </header>
+    <main>
+    <div class="container">
+        <div class="left">
+            <div id="productContainer" class="product-container">
+                <img id="productImage" src="images/Bask/base2.jpg" alt="Product Image" class="product-image">
+                <img id="overlayImage" src="images/Fut/base1.jpeg" alt="Overlay Image" class="overlay-image" style="display: none;">
+            </div>
+            <button id="eliminarBtn" class="btn">Eliminar Seleccionado</button>
+        </div>
+        <div class="right">
+            <form id="designForm">
+                <label for="producto">Seleccionar Producto:</label>
+                <select id="producto" name="producto">
+                    <option value="Fut">Futbol</option>
+                    <option value="Bass">Basquetbol</option>
+                    <option value="Short">Short</option>
+                </select>
+
+                <label for="disenoSeleccion">Selecciona un diseño:</label>
+                <div id="disenoSeleccion" class="design-selection">
+                    <!-- Opciones de diseño dinámicamente insertadas aquí -->
+                </div>
+
+                <label for="disenoPredefinido">Diseño predefinido:</label>
+                <select id="disenoPredefinido" name="disenoPredefinido">
+                    <option value="diseño1">Diseño 1</option>
+                    <option value="diseño2">Diseño 2</option>
+                </select>
+
+                <label for="archivo">Adjuntar mi propio diseño:</label>
+                <input type="file" id="archivo" name="archivo">
+
+                <button type="button" id="descargarBtn" class="btn green-btn">Descargar</button>
+            </form>
+            <p>
+                Todo el material que vayas anexando se irá guardando, y una vez que finalices tu diseño se enviará todo para poder seleccionar con qué se va a trabajar <b>aunque lo hayas suprimido del diseño final</b>. En caso de que hayas anexado una foto que no quieras mandar debes volver a iniciar tu diseño <a href="#">Haz click aquí para borrar todo y volver a iniciar</a>
+            </p>
+            <p>POWERED BY Emprendiendo Mi Negocio.com</p>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

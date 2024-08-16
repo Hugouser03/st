@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos para que los íconos estén a la derecha */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+}
+
+/* Estilo para el contenedor del logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para el ícono del logo */
+.logo-icon {
+    width: 50px; /* Tamaño del ícono, ajusta según necesites */
+    height: auto; /* Mantén la proporción del ícono */
+}
+
+/* Estilo para el título del logo */
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Ocultar texto alternativo de las imágenes */
+img[alt]::before {
+    content: attr(alt);
+    display: none;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+}
+
+.social-media div {
+    width: 30px;
+    height: 30px;
+}
+
+.social-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.social-icon {
+    margin-left: 10px; /* Espacio entre los íconos */
+    width: 30px; /* Tamaño del ícono, ajusta según necesites */
+    height: auto; /* Mantén la proporción del ícono */
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.main-image {
+    width: 50%;
+    height: 400px;
+    border: 1px solid #ccc;
+}
+
+.subtitle {
+    width: 40%;
+    padding: 20px;
+    text-align: justify;
+    border: 1px solid #ccc;
+}
+
+.gallery {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.MENU {
+    width: 23%;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+    text-align: center;
+}
