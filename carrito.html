@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <li><a href="index.php">Inicio</a></li>
+
+    <h1>Carrito de Compras</h1>
+    
+    <h2>Agregar al Carrito</h2>
+    <form id="add-to-cart-form">
+        <label for="producto_id">ID del Producto:</label>
+        <input type="text" id="producto_id" name="producto_id" required>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Pedidos</h2>
+    <table id="pedidos-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto ID</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById('add-to-cart-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const producto_id = document.getElementById('producto_id').value;
+            const cantidad = document.getElementById('cantidad').value;
+
+            await fetch('pedido.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ producto_id, cantidad })
+            });
+
+            loadPedidos();
+        });
+
+        async function loadPedidos() {
+            const response = await fetch('pedido.php');
+            const pedidos = await response.json();
+            const tbody = document.querySelector('#pedidos-table tbody');
+            tbody.innerHTML = '';
+
+            pedidos.forEach(pedido => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = pedido.id;
+                row.insertCell(1).textContent = pedido.producto_id;
+                row.insertCell(2).textContent = pedido.cantidad;
+                row.insertCell(3).textContent = new Date(pedido.fecha).toLocaleString();
+                
+                const actionsCell = row.insertCell(4);
+                actionsCell.innerHTML = `
+                    <button onclick="deletePedido(${pedido.id})">Eliminar</button>
+                    <button onclick="editPedido(${pedido.id})">Modificar</button>
+                `;
+            });
+        }
+
+        async function deletePedido(id) {
+            await fetch('pedido.php', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ id })
+            });
+            loadPedidos();
+        }
+
+        async function editPedido(id) {
+            const cantidad = prompt('Ingrese la nueva cantidad:');
+            if (cantidad) {
+                await fetch('pedido.php', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ id, cantidad })
+                });
+                loadPedidos();
+            }
+        }
+
+        loadPedidos();
+    </script>
+</body>
+</html>
